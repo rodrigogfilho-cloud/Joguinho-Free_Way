@@ -100,7 +100,6 @@ while True:
     if tecla_pressionada[pygame.K_ESCAPE]:
         break
     
-
         #ATUALIZA A TELA
     pygame.display.update()
 
