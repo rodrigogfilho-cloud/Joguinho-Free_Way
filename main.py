@@ -23,6 +23,7 @@ perdeu = pygame.transform.scale(perdeu,(1700,900))
 victory = pygame.image.load("src/img/victory.png")
 victory = pygame.transform.scale(victory,(1700,900))
 musica_victory = pygame.mixer.Sound("src/sound/ScreenRecording_06-04-2026 11-24-21_1 (online-audio-converter.com).mp3")
+intro = pygame.mixer.Sound("src/sound/intro.mp3")
 musica_perdeu = pygame.mixer.Sound("src/sound/perdedor.mp3")
 #alterar o nome do jogo
 
@@ -40,6 +41,7 @@ lista_inimigos = [Viloes("src/img/bin.png"),
 davizinho = Jogador()
 fonte_texto = pygame.font.SysFont("Arial",28,True)
 status_jogo = "INICIO"
+intro_tocou = False
 while True:
     #Pego todos os eventos que aconteceram na janela
     lista_de_eventos = pygame.event.get()
@@ -55,11 +57,13 @@ while True:
     #PINTANDO A TELA NOVAMENTE
     
     if status_jogo == "INICIO":
+        if not intro_tocou:
+            intro.play()
+            intro_tocou = True
         tela.blit(inicial,(0,0))
         if tecla_pressionada[pygame.K_RETURN] or tecla_pressionada[pygame.K_KP_ENTER]:
+            intro.stop()
             status_jogo = "JOGANDO"
-        if tecla_pressionada[pygame.K_ESCAPE]:
-            break
 
     if status_jogo =="JOGANDO":
 
@@ -81,18 +85,19 @@ while True:
                 davizinho.gritar()
             if morte == 0 :
                 status_jogo = "PERDEU"
+                musica_perdeu.play()
             if davizinho.davi_y < 70:
                 status_jogo = "VICTORY"
+                musica_victory.play()
     if status_jogo == "PERDEU":
+        davizinho.som.stop()
         tela.blit(perdeu,(0,0))
-        musica_perdeu.play()
         if tecla_pressionada[pygame.K_RETURN] or tecla_pressionada[pygame.K_KP_ENTER]:
             status_jogo = "JOGANDO"
             morte = 5
             musica_perdeu.stop()
     if status_jogo == "VICTORY":
         tela.blit(victory,(0,0))
-        musica_victory.play()
         if tecla_pressionada[pygame.K_RETURN] or tecla_pressionada[pygame.K_KP_ENTER]:
             davizinho.voltar()
             status_jogo = "JOGANDO"
