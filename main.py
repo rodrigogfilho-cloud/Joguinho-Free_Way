@@ -94,12 +94,13 @@ while True:
         tela.blit(victory,(0,0))
         musica_victory.play()
         if tecla_pressionada[pygame.K_RETURN] or tecla_pressionada[pygame.K_KP_ENTER]:
+            davizinho.voltar()
             status_jogo = "JOGANDO"
             morte = 5
             musica_victory.stop()
     if tecla_pressionada[pygame.K_ESCAPE]:
         break
-    
+
         #ATUALIZA A TELA
     pygame.display.update()
 
