@@ -127,6 +127,10 @@ while True:
     if status_jogo == "VICTORY":
         tela.blit(victory,(0,0))
         if tecla_pressionada[pygame.K_RETURN] or tecla_pressionada[pygame.K_KP_ENTER]:
+            lista_inimigos = [Viloes("src/img/bin.png"),
+                  Viloes("src/img/vilao.png"),
+                  Viloes("src/img/vilao2.png"),
+                  Viloes("src/img/vilao3.png")]
             pontos = 0
             davizinho.voltar()
             status_jogo = "JOGANDO"
