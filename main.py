@@ -1,4 +1,5 @@
 import pygame
+import random
 from classe_viloes_hahaha import Viloes
 from classse_jogador import Jogador
 
@@ -28,15 +29,19 @@ musica_perdeu = pygame.mixer.Sound("src/sound/perdedor.mp3")
 #alterar o nome do jogo
 
 pygame.display.set_caption("Joguinho do Mr. Godoy Master Aurudo 6️⃣7️⃣")
+pontos = 0
 morte = 5
+
+x = 0
 
 #criando inimigos
 lista_inimigos = [Viloes("src/img/bin.png"),
                   Viloes("src/img/vilao.png"),
                   Viloes("src/img/vilao2.png"),
-                  Viloes("src/img/vilao3.png")]
+                  Viloes("src/img/vilao3.png")
+                  ]
 
-#criando davizinho
+
 
 davizinho = Jogador()
 fonte_texto = pygame.font.SysFont("Arial",28,True)
@@ -69,8 +74,9 @@ while True:
 
         #exibindo tela da rua
         tela.blit(fundo,(0,0))
-
-        textos_mortes = fonte_texto.render(f'VIDAS: {morte}', False,(255,255,255))
+        textos_pontos = fonte_texto.render(f'PONTOS: {pontos}', False,(255,255,255),(0,0,0))
+        tela.blit(textos_pontos,(1568, 5))
+        textos_mortes = fonte_texto.render(f'VIDAS: {morte}', False,(255,255,255),(0,0,0))
         tela.blit(textos_mortes,(10, 5))
         #exibir davizinho
         davizinho.andar(tecla_pressionada)
@@ -87,18 +93,41 @@ while True:
                 status_jogo = "PERDEU"
                 musica_perdeu.play()
             if davizinho.davi_y < 70:
+                for z in range(1):
+                    x += 1
+                    if x % 4 == 0:
+                        lista_inimigos.append(Viloes("src/img/bin.png"))
+                    if x % 4 == 1:
+                        lista_inimigos.append(Viloes("src/img/vilao.png"))
+                    if x % 4 == 2:
+                        lista_inimigos.append(Viloes("src/img/vilao2.png"))
+                    if x % 4 == 3:
+                        lista_inimigos.append(Viloes("src/img/vilao3.png"))
+                    if x == 5:
+                        x = 1
+                pontos = pontos + 1
+                davizinho.voltar()
+            if pontos == 10:
                 status_jogo = "VICTORY"
                 musica_victory.play()
+
     if status_jogo == "PERDEU":
         davizinho.som.stop()
         tela.blit(perdeu,(0,0))
         if tecla_pressionada[pygame.K_RETURN] or tecla_pressionada[pygame.K_KP_ENTER]:
+            lista_inimigos =  [Viloes("src/img/bin.png"),
+                  Viloes("src/img/vilao.png"),
+                  Viloes("src/img/vilao2.png"),
+                  Viloes("src/img/vilao3.png")
+                  ]
+            pontos = 0
             status_jogo = "JOGANDO"
             morte = 5
             musica_perdeu.stop()
     if status_jogo == "VICTORY":
         tela.blit(victory,(0,0))
         if tecla_pressionada[pygame.K_RETURN] or tecla_pressionada[pygame.K_KP_ENTER]:
+            pontos = 0
             davizinho.voltar()
             status_jogo = "JOGANDO"
             morte = 5
