@@ -1,16 +1,16 @@
 import pygame
-
+from caminho_relativo import resource_path
 class Jogador:
     def __init__ (self):
         self.davi_x = 800
         self.davi_y = 750
         #carregando imagens 
-        self.imagem = pygame.image.load("src/img/DAVI-BRITO.png")
+        self.imagem = pygame.image.load(resource_path("src/img/DAVI-BRITO.png"))
         self.imagem = pygame.transform.scale_by (self.imagem,0.5)
         #mascara jogador
         self.mascara = pygame.mask.from_surface(self.imagem)
 
-        self.som = pygame.mixer.Sound("src/sound/calabreso.mp3")
+        self.som = pygame.mixer.Sound(resource_path("src/sound/calabreso.mp3"))
 
         self.victory = 0
     def andar(self,tecla_pressionada):

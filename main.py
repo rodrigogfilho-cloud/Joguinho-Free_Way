@@ -2,6 +2,8 @@ import pygame
 import random
 from classe_viloes_hahaha import Viloes
 from classse_jogador import Jogador
+from caminho_relativo import resource_path
+
 
 pygame.init()
 
@@ -15,17 +17,17 @@ cores = {
 clock = pygame.time.Clock()
 #cria a janela do jogo
 tela = pygame.display.set_mode((1700,900))
-fundo = pygame.image.load("src/img/rua2.png")
+fundo = pygame.image.load(resource_path("src/img/rua2.png"))
 fundo = pygame.transform.scale(fundo,(1700,900))
-inicial = pygame.image.load("src/img/tela_inicial.png")
+inicial = pygame.image.load(resource_path("src/img/tela_inicial.png"))
 inicial = pygame.transform.scale(inicial,(1700,900))
-perdeu = pygame.image.load("src/img/gameover.png")
+perdeu = pygame.image.load(resource_path("src/img/gameover.png"))
 perdeu = pygame.transform.scale(perdeu,(1700,900))
-victory = pygame.image.load("src/img/victory.png")
+victory = pygame.image.load(resource_path("src/img/victory.png"))
 victory = pygame.transform.scale(victory,(1700,900))
-musica_victory = pygame.mixer.Sound("src/sound/ScreenRecording_06-04-2026 11-24-21_1 (online-audio-converter.com).mp3")
-intro = pygame.mixer.Sound("src/sound/intro.mp3")
-musica_perdeu = pygame.mixer.Sound("src/sound/perdedor.mp3")
+musica_victory = pygame.mixer.Sound(resource_path("src/sound/ScreenRecording_06-04-2026 11-24-21_1 (online-audio-converter.com).mp3"))
+intro = pygame.mixer.Sound(resource_path("src/sound/intro.mp3"))
+musica_perdeu = pygame.mixer.Sound(resource_path("src/sound/perdedor.mp3"))
 #alterar o nome do jogo
 
 pygame.display.set_caption("Joguinho do Mr. Godoy Master Aurudo 6️⃣7️⃣")
@@ -35,10 +37,10 @@ morte = 5
 x = 0
 
 #criando inimigos
-lista_inimigos = [Viloes("src/img/bin.png"),
-                  Viloes("src/img/vilao.png"),
-                  Viloes("src/img/vilao2.png"),
-                  Viloes("src/img/vilao3.png")
+lista_inimigos = [Viloes(resource_path("src/img/bin.png")),
+                  Viloes(resource_path("src/img/vilao.png")),
+                  Viloes(resource_path("src/img/vilao2.png")),
+                  Viloes(resource_path("src/img/vilao3.png"))
                   ]
 
 
@@ -96,13 +98,13 @@ while True:
                 for z in range(1):
                     x += 1
                     if x % 4 == 0:
-                        lista_inimigos.append(Viloes("src/img/bin.png"))
+                        lista_inimigos.append(Viloes(resource_path("src/img/bin.png")))
                     if x % 4 == 1:
-                        lista_inimigos.append(Viloes("src/img/vilao.png"))
+                        lista_inimigos.append(Viloes(resource_path("src/img/vilao.png")))
                     if x % 4 == 2:
-                        lista_inimigos.append(Viloes("src/img/vilao2.png"))
+                        lista_inimigos.append(Viloes(resource_path("src/img/vilao2.png")))
                     if x % 4 == 3:
-                        lista_inimigos.append(Viloes("src/img/vilao3.png"))
+                        lista_inimigos.append(Viloes(resource_path("src/img/vilao3.png")))
                     if x == 5:
                         x = 1
                 pontos = pontos + 1
@@ -115,10 +117,10 @@ while True:
         davizinho.som.stop()
         tela.blit(perdeu,(0,0))
         if tecla_pressionada[pygame.K_RETURN] or tecla_pressionada[pygame.K_KP_ENTER]:
-            lista_inimigos =  [Viloes("src/img/bin.png"),
-                  Viloes("src/img/vilao.png"),
-                  Viloes("src/img/vilao2.png"),
-                  Viloes("src/img/vilao3.png")
+            lista_inimigos =  [Viloes(resource_path("src/img/bin.png")),
+                  Viloes(resource_path("src/img/vilao.png")),
+                  Viloes(resource_path("src/img/vilao2.png")),
+                  Viloes(resource_path("src/img/vilao3.png"))
                   ]
             pontos = 0
             status_jogo = "JOGANDO"
@@ -128,9 +130,9 @@ while True:
         tela.blit(victory,(0,0))
         if tecla_pressionada[pygame.K_RETURN] or tecla_pressionada[pygame.K_KP_ENTER]:
             lista_inimigos = [Viloes("src/img/bin.png"),
-                  Viloes("src/img/vilao.png"),
-                  Viloes("src/img/vilao2.png"),
-                  Viloes("src/img/vilao3.png")]
+                  Viloes(resource_path("src/img/vilao.png")),
+                  Viloes(resource_path("src/img/vilao2.png")),
+                  Viloes(resource_path("src/img/vilao3.png"))]
             pontos = 0
             davizinho.voltar()
             status_jogo = "JOGANDO"
