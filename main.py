@@ -74,9 +74,9 @@ while True:
 
         #exibindo tela da rua
         tela.blit(fundo,(0,0))
-        textos_pontos = fonte_texto.render(f'PONTOS: {pontos}', False,(255,255,255),(0,0,0))
-        tela.blit(textos_pontos,(1568, 5))
-        textos_mortes = fonte_texto.render(f'VIDAS: {morte}', False,(255,255,255),(0,0,0))
+        textos_pontos = fonte_texto.render(f' PONTOS: {pontos} ', False,(255,255,255),(0,0,0))
+        tela.blit(textos_pontos,(1555, 5))
+        textos_mortes = fonte_texto.render(f' VIDAS: {morte} ', False,(255,255,255),(0,0,0))
         tela.blit(textos_mortes,(10, 5))
         #exibir davizinho
         davizinho.andar(tecla_pressionada)
