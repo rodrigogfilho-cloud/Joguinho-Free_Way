@@ -49,14 +49,15 @@ davizinho = Jogador()
 fonte_texto = pygame.font.SysFont("Arial",28,True)
 status_jogo = "INICIO"
 intro_tocou = False
-while True:
+rodando = True
+
+while rodando :
     #Pego todos os eventos que aconteceram na janela
     lista_de_eventos = pygame.event.get()
     #Percorro os eventos para encontrar aquele que eu quiser
     for evento in lista_de_eventos:
         if evento.type == pygame.QUIT: #Se um dos eventos for ter clicado no X eu encerro o programa
-            pygame.quit()
-            exit()
+            rodando = False
 
     
 
